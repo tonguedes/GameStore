@@ -63,33 +63,18 @@ function inserir() {
       .then((response) => response.json())
       .then((json) => {
        console.log(json)
-       const nome = "tokenLogin"
-       const valor = json.token 
-       
-       if( document.cookie = nome + "=" + (valor || "")){
-               //window.location.href = "index.html";
-       }
-         
-       
-      
+       if(json.token){
+        const nome = "tokenLogin"
+        const valor = json.token 
+        document.cookie = nome + "=" + (valor || "")
+        if(getCookie("tokenLogin")){
+                window.location.href = "index.html";
+        }
+
+       }else if(json.error){
+        alert(json.error)
+       } 
       });
-
-      // token do login
-      token = getCookie("TokenLogin");
-
-        fetch("http://localhost:3000/auth/login:", {
-          method: "POST",
-          body: JSON.stringify(_data),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            Authorization: `Bearer ${token}`,
-          },
-        }).then(function (response) {
-          response.json().then(function (json) {
-            console.log(json);
-          });
-        });
-      }
 
       function getCookie(name) {
         const value = `; ${document.cookie}`;
@@ -116,4 +101,4 @@ function inserir() {
             ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
         }
       }
-  
+    }
