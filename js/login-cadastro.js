@@ -9,9 +9,6 @@ $('.input100').each(function(){
     })    
 })
 
-
-
-//integrando o html com o front cadastro com  afunção login
 function inserir() {
     // dados a serem enviados pela solicitação POST
     const name = document.getElementById("name").value
@@ -39,9 +36,7 @@ function inserir() {
         }else{
             console.log("Não foi");
         }
-      });
-
-       
+      });    
   }
 
   //funçao logar
@@ -75,6 +70,7 @@ function inserir() {
         alert(json.error)
        } 
       });
+    }
 
       function getCookie(name) {
         const value = `; ${document.cookie}`;
@@ -101,4 +97,4 @@ function inserir() {
             ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
         }
       }
-    }
+    
