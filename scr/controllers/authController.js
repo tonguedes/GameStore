@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 
 
-class AuthController {
+  class AuthController {
 
   static gerarToken(param){
     return jwt.sign(param, process.env.API_SECRET, {
@@ -32,7 +32,7 @@ class AuthController {
     //função autentificação 
     static auth = async(req,res)=>{
       const{email,password}=req.body;
-  console.log(req.body)
+      console.log(req.body)
       const user = await User.findOne({email}).select("+password")
 
       if(!user)
@@ -51,8 +51,6 @@ class AuthController {
 
       
     }
-
-
     
     
     //update
@@ -63,7 +61,7 @@ class AuthController {
       }
       //read
       static read =async(req,res)=>{
-        const userId =req.params.id
+        const userId =req.id
 
         try {
           const user = await User.findById(userId)
@@ -74,19 +72,22 @@ class AuthController {
         }
       }
 
+      
+       static getAllUser = async (req, res) => {
+         const userAll = await User.find();
+           if (!userAll) return res.status(204).json({ 'message': 'Usuário não encontrado.' });
+              res.json(userAll);
+      }
+
       static delete =async(req,res)=>{
         const userId =req.params.id
           await User.findByIdAndDelete(userId)
 
         return res.status(204).send()
       }
+       
 
-  
     
   }
-
-        
   
-  
-
 export default AuthController;

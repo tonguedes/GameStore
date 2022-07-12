@@ -10,7 +10,8 @@ const router = express.Router();
 router.post("/register",AuthController.userRegister)
 router.post("/login",AuthController.auth)
 router.put("/:id",AuthController.update)
-router.get("/:id",AuthController.read)
+router.get("/:id",authMiddleware,AuthController.read)
+//router.get("/getall",AuthController.getAllUser)
 router.delete("/:id",AuthController.delete)
 
 

@@ -23,7 +23,8 @@ const auth = (req, res, next) => {
     req.id = tokenDecodado.id
     return next();
   })
-
+  console.log(token)
 }
+
 
 export default auth;

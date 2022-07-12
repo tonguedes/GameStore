@@ -72,6 +72,8 @@ function inserir() {
       });
     }
 
+    
+
       function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -96,5 +98,24 @@ function inserir() {
             (domain ? ";domain=" + domain : "") +
             ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
         }
+      }
+
+      function VerificaToken() {
+      
+
+        token = getCookie("Token Login");
+
+        fetch("http://localhost:3000/id:/", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
+          },
+        }).then(function (response) {
+          response.json().then(function (json) {
+            console.log(json);
+          });
+        });
       }
     
