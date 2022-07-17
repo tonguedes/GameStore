@@ -1,13 +1,4 @@
-$('.input100').each(function(){
-    $(this).on('blur', function(){
-        if($(this).val().trim() != "") {
-            $(this).addClass('has-val');
-        }
-        else {
-            $(this).removeClass('has-val');
-        }
-    })    
-})
+
 
 function inserir() {
     // dados a serem enviados pela solicitação POST
@@ -103,11 +94,10 @@ function inserir() {
       function VerificaToken() {
       
 
-        token = getCookie("Token Login");
+        token = getCookie("tokenLogin");
 
-        fetch("http://localhost:3000/id:/", {
-          method: "POST",
-          body: JSON.stringify(data),
+        fetch("http://localhost:3000/auth/user", {
+          method: "GET",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             Authorization: `Bearer ${token}`,
