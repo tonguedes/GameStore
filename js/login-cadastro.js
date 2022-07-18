@@ -22,8 +22,7 @@ function inserir() {
       .then((response) => response.json())
       .then((json) => {
         if (json.id !== '') {
-            chamar()
-           
+            console.log(json);
         }else{
             console.log("Não foi");
         }
@@ -95,8 +94,8 @@ function inserir() {
       
 
         token = getCookie("tokenLogin");
-
-        fetch("http://localhost:3000/auth/user", {
+        nameUser = document.getElementById("name-user");
+        fetch("http://localhost:3000/user/user", {
           method: "GET",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -104,7 +103,8 @@ function inserir() {
           },
         }).then(function (response) {
           response.json().then(function (json) {
-            console.log(json);
+            nameUser.innerHTML=json.user.name;
+            console.log(json.user.name);
           });
         });
       }
