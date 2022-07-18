@@ -7,7 +7,7 @@ router.use(authMiddleware)
 
 
 router.put("/:id",UserController.update)
-router.get("user",UserController.read)
+router.get("/user",UserController.read)
 router.get("/getall",UserController.getAllUser)
 router.delete("/:id",UserController.delete)
 
